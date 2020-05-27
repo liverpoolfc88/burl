@@ -62,12 +62,11 @@ $this->title = 'My Yii Application';
     foreach ($silka as $key => $value){
     ?>
 
-<!--        --><?//=mb_substr($page->translate('short'),0,65);echo(strlen($page->translate('short'))>65)?'...':'' ?>
     <tr>
         <td><a href="<?=$value->org_url?>"><?=mb_substr($value->org_url,0,20);echo(strlen($value->org_url)>20)?'...':'' ?></a> </td>
-        <td> <?=$value->gen?></td>
+        <td> <?=date('d-m-Y',$value->gen)?></td>
         <td><?=$value->click?></td>
-        <td><a href="<?=$value->org_url?>" target="_blank"><?=$value->short_link?></a></td>
+        <td><a href="<?=Url::base(true)."/".$value->short_link?>" target="_blank" data-id="<?=$value->id?>" class="href"><?=Url::base(true)."/".$value->short_link?></a></td>
         <td> <a href="<?=Url::to(['/url/view','id'=>$value->id]);?>"><span  aria-hidden="true"></span>Analitika</a></td>
 
     </tr>
@@ -79,13 +78,14 @@ $this->title = 'My Yii Application';
 <?
 $this->registerJs('
 // a tegidagi href id si
-    $("#href").click(function(e){
+    $(".href").click(function(e){
         e.preventDefault();
         var data = $(this).attr("data-id");
+        var href  =$(this).attr("href");
         $.get("updateclick",{id: data},function(response){
             if(response.result=="success") {
 //            consolga rezultat chiqarilmoqda
-                console.log(response.result);
+                window.open(href, "_blank");
             }
 //            consolga rezultat chiqarilmoqda
             else console.log(response.result);

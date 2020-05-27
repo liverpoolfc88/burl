@@ -30,7 +30,7 @@ class Url extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['org_url', 'gen', 'short_link'], 'required','message'=>"To'ldirmadingiz!"],
+            [['org_url', 'short_link'], 'required','message'=>"To'ldirmadingiz!"],
             [['gen', 'click'], 'integer'],
             [['org_url', 'short_link', 'analitic'], 'string', 'max' => 255],
         ];
@@ -51,25 +51,31 @@ class Url extends \yii\db\ActiveRecord
         ];
     }
 
+    public static function getHash($link)
+    {
+        return substr(md5($link.time()), 0, 6);
+    }
+
     public static function checkLink($url)
     {
         if (substr($url,0,4)!="http") $url="http://".$url;
 
-// Remove all illegal characters from a url
-        $url = filter_var($url, FILTER_SANITIZE_URL);
-
-// Validate url
-        if (filter_var($url, FILTER_VALIDATE_URL) !== false) {
+        if(@file_get_contents($url))
+        {
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
 
-//    public function beforeSave($insert)
-//    {
-//        if ($insert) {
-//            $this->gen = time();
-//        }
-//    }
+    public function beforeSave($insert){
+        if($insert){
+            $this->gen = time();
+        }else{
+            // update
+        }
+        return parent::beforeSave($insert);
+    }
 }

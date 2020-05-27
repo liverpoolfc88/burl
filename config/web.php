@@ -48,6 +48,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+//                'site/<page:[\w\-]+>'=>'site/redirect',
             ],
         ],
 
