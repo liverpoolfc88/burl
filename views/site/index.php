@@ -57,7 +57,7 @@ $this->title = 'My Yii Application';
         <th>Tayyor link</th>
         <th></th>
     </tr>
-    echo substr("Hello world",6);
+
     <?
     foreach ($silka as $key => $value){
     ?>
@@ -67,7 +67,7 @@ $this->title = 'My Yii Application';
         <td><a href="<?=$value->org_url?>"><?=mb_substr($value->org_url,0,20);echo(strlen($value->org_url)>20)?'...':'' ?></a> </td>
         <td> <?=$value->gen?></td>
         <td><?=$value->click?></td>
-        <td><a href="<?=$value->short_link?>"><?=$value->short_link?></a></td>
+        <td><a href="<?=$value->org_url?>" target="_blank"><?=$value->short_link?></a></td>
         <td> <a href="<?=Url::to(['/url/view','id'=>$value->id]);?>"><span  aria-hidden="true"></span>Analitika</a></td>
 
     </tr>

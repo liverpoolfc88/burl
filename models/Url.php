@@ -51,6 +51,21 @@ class Url extends \yii\db\ActiveRecord
         ];
     }
 
+    public static function checkLink($url)
+    {
+        if (substr($url,0,4)!="http") $url="http://".$url;
+
+// Remove all illegal characters from a url
+        $url = filter_var($url, FILTER_SANITIZE_URL);
+
+// Validate url
+        if (filter_var($url, FILTER_VALIDATE_URL) !== false) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 //    public function beforeSave($insert)
 //    {
 //        if ($insert) {
