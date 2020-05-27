@@ -73,26 +73,3 @@ $this->title = 'My Yii Application';
     <?}?>
 
 </table>
-
-
-<?
-$this->registerJs('
-// a tegidagi href id si
-    $(".href").click(function(e){
-        e.preventDefault();
-        var data = $(this).attr("data-id");
-        var href  =$(this).attr("href");
-        $.get("updateclick",{id: data},function(response){
-            if(response.result=="success") {
-//            consolga rezultat chiqarilmoqda
-                window.open(href, "_blank");
-            }
-//            consolga rezultat chiqarilmoqda
-            else console.log(response.result);
-        });
-        
-    });
-
-');
-
-?>
