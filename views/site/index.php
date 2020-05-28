@@ -79,6 +79,7 @@ $this->title = 'My Yii Application';
     ?>
 
     <tr>
+<!--        <td><a class="k" href="--><?//=$value->org_url?><!--">--><?//=$value->org_url?><!--</a> </td>-->
         <td><a href="<?=$value->org_url?>"><?=mb_substr($value->org_url,0,20);echo(strlen($value->org_url)>20)?'...':'' ?></a> </td>
         <td> <?=date('d-m-Y',$value->gen)?></td>
         <td><?=$value->click?></td>
@@ -88,8 +89,14 @@ $this->title = 'My Yii Application';
     </tr>
 
 
-    <?}?>
 
+    <?}?>
+    <tr>
+        <td > <div  >jkdsh sdhdshfdhsghjf dkhsgfkgfkhsdg kdgkg123</div> </td>
+        <td>123</td>
+        <td>123</td>
+        <td>123</td>
+    </tr>
 </table>
 <div class="col-sm-6 text-left">
     <?= LinkPager::widget([
@@ -100,4 +107,12 @@ $this->title = 'My Yii Application';
 
 
     </p>
-
+<!--<style>-->
+<!--tr td a  {-->
+<!--white-space: nowrap;-->
+<!--width: 10px;!important;-->
+<!--overflow: hidden;-->
+<!--text-overflow: ellipsis;-->
+<!--border: 1px solid #000000;-->
+<!--}-->
+<!--</style>-->

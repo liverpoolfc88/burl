@@ -94,13 +94,16 @@ class SiteController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $model = new Url();
         $count = count($silka1);
-//        $cost = array_sum($costs);
-        foreach ($silka1 as $key => $value){
-        $cost+=$value->click;
-    }
+        $cost = Url::find()->sum('click');
 
-//        $a = array(2, 4, 6, 8);
-//        echo "sum(a) = " . array_sum($a) . "\n";
+
+//        foreach ($silka1 as $key => $value){
+//        $cost+=$value->click;
+//    }
+
+//
+
+
 
 
 
