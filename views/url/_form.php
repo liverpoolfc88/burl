@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'analitic')->hiddenInput(['maxlength' => true,'value'=>1]) ->label(false)?>
 
     <div class="form-group">
-        <?= Html::submitButton('Qisqartirilgan ssilka olish', ['class' => 'knopka btn btn-primary']) ?>
+        <?= Html::submitButton('Qisqartirilgan ssilka olish', ['class' => ' btn btn-primary']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 
