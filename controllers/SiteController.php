@@ -10,7 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Url;
-
+use yii\data\Pagination;
 use app\models\UrlSearch;
 
 use yii\web\NotFoundHttpException;
@@ -80,10 +80,30 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $silka = Url::find()->orderBy(['id'=>SORT_DESC])->all();
+        $silka1 = Url::find()->orderBy(['id'=>SORT_DESC])->all();
+        $silka = Url::find()->orderBy(['id'=>SORT_DESC]);
+        $pagination = new Pagination([
+            'defaultPageSize' => 4,
+            'totalCount' => $silka->count()
+        ]);
+        $silka=$silka->offset($pagination->offset)->limit($pagination->limit)->all();
+//        $silka1 = Url::find()->asArray->all();
+//        $costs = $silka->click;
+//        $getClick = Url::find()->all();
         $searchModel = new UrlSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $model = new Url();
+        $count = count($silka1);
+//        $cost = array_sum($costs);
+        foreach ($silka1 as $key => $value){
+        $cost+=$value->click;
+    }
+
+//        $a = array(2, 4, 6, 8);
+//        echo "sum(a) = " . array_sum($a) . "\n";
+
+
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
@@ -93,6 +113,10 @@ class SiteController extends Controller
             'model' => $model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+//            'getClick' => $getClick,
+            'count' => $count,
+            'pagination' => $pagination,
+            'cost' => $cost,
         ]);
     }
 

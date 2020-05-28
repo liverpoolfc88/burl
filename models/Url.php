@@ -33,6 +33,7 @@ class Url extends \yii\db\ActiveRecord
             [['org_url', 'short_link'], 'required','message'=>"To'ldirmadingiz!"],
             [['gen', 'click'], 'integer'],
             [['org_url', 'short_link', 'analitic'], 'string', 'max' => 255],
+            [['limit'], 'string', 'max' => 25],
         ];
     }
 
@@ -48,6 +49,7 @@ class Url extends \yii\db\ActiveRecord
             'click' => 'Click',
             'short_link' => 'Short Link',
             'analitic' => 'Analitic',
+            'limit' => 'Limit',
         ];
     }
 

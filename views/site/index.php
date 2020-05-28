@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\grid\GridView;
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
@@ -15,15 +16,30 @@ $this->title = 'My Yii Application';
         <?= $this->render('/url/_form', [
             'model' => $model,
         ]) ?>
+
+
     </div>
     <div style="text-align: center; font-size: 20px" class="col-md-6">
         <p >Statistika:</p>
         <div class="col-md-6">
-            <p>150</p>
+<!--            --><?// $getCountId = 0;
+//            foreach ($getClick as $key){
+//                $getCountId += 1;
+//            }
+//            ?>
+            <p><?=$count?></p>
             <p>Barcha silkalar</p>
         </div>
+<!--        --><?//
+//            foreach ($silka as $key => $value){
+//                $cost+=$value->click;
+//                }
+//
+//
+//        ?>
+
         <div class="col-md-6">
-            <p>33258</p>
+            <p><?=$cost?></p>
             <p>Barcha o`tishlar</p>
         </div>
     </div>
@@ -70,6 +86,18 @@ $this->title = 'My Yii Application';
         <td> <a href="<?=Url::to(['/url/view','id'=>$value->id]);?>"><span  aria-hidden="true"></span>Analitika</a></td>
 
     </tr>
+
+
     <?}?>
 
 </table>
+<div class="col-sm-6 text-left">
+    <?= LinkPager::widget([
+        'pagination' => $pagination,
+    ]);?>
+</div>
+    <p>
+
+
+    </p>
+
