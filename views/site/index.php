@@ -81,8 +81,8 @@ $this->title = 'My Yii Application';
     <tr>
         <td><a href="<?=$value->org_url?>"><?=mb_substr($value->org_url,0,20);echo(strlen($value->org_url)>20)?'...':'' ?></a> </td>
         <td> <?=date('d-m-Y',$value->gen)?></td>
-        <td><?=$value->click?></td>
-        <td><a href="<?=Url::base(true)."/".$value->short_link?>" target="_blank" data-id="<?=$value->id?>" class="href"><?=Url::base(true)."/".$value->short_link?></a></td>
+        <td class="click_<?=$value->id?>"><?=$value->click?></td>
+        <td><a href="<?=Url::base(true)."/".$value->short_link?>" target="_blank" data-id="<?=$value->id?>" data-count="<?=$value->click?>" class="href"><?=Url::base(true)."/".$value->short_link?></a></td>
         <td> <a href="<?=Url::to(['/url/view','id'=>$value->id]);?>"><span  aria-hidden="true"></span>Analitika</a></td>
 
     </tr>
@@ -101,3 +101,18 @@ $this->title = 'My Yii Application';
 
     </p>
 
+<?php
+$this->registerJs('
+// a tegidagi href id si
+    $(".href").click(function(e){
+        e.preventDefault();
+        var data = $(this).attr("data-id");
+        var count = Number($(this).attr("data-count"));
+        var link = $(this).attr("href");
+        count = count+1;
+        $(this).attr("data-count",count);
+        $(".click_"+data).html(count);
+        window.open(link, "_blank");
+    });
+
+');

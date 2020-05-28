@@ -31,9 +31,8 @@ class Url extends \yii\db\ActiveRecord
     {
         return [
             [['org_url', 'short_link'], 'required','message'=>"To'ldirmadingiz!"],
-            [['gen', 'click'], 'integer'],
+            [['gen', 'click','dead_time'], 'integer'],
             [['org_url', 'short_link', 'analitic'], 'string', 'max' => 255],
-            [['limit'], 'string', 'max' => 25],
         ];
     }
 
@@ -49,7 +48,7 @@ class Url extends \yii\db\ActiveRecord
             'click' => 'Click',
             'short_link' => 'Short Link',
             'analitic' => 'Analitic',
-            'limit' => 'Limit',
+            'dead_time' => 'Limit',
         ];
     }
 
@@ -75,6 +74,18 @@ class Url extends \yii\db\ActiveRecord
     public function beforeSave($insert){
         if($insert){
             $this->gen = time();
+            switch ($this->dead_time){
+                case 1:
+                        $this->dead_time = time()+(5*365*24*60*60); //5 yil
+                    break;
+                case 2:
+                    $this->dead_time = time()+(30*24*60*60); //30 kun
+                    break;
+                case 3:
+                    $this->dead_time = time()+(7*24*60*60); //7 kun
+                    break;
+
+            }
         }else{
             // update
         }

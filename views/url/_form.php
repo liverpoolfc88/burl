@@ -14,8 +14,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'org_url')->textInput(['maxlength' => true])->label('E-manzilni kiriting') ?>
 
-    <?php $model->limit = 'Вечно'; ?>
-    <?= $form->field($model, 'limit')->radioList(['Вечно'=>'Doimiy', 'Один месяц' => 'Bir oy', 'Одна неделя' =>'Bir hafta'])
+    <?php $model->dead_time = '1'; ?>
+    <?= $form->field($model, 'dead_time')->radioList(['1'=>'Doimiy', '2' => 'Bir oy', '3' =>'Bir hafta'])
         ->label('Срок действия короткой ссылки:'); ?>
 
 

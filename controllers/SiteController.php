@@ -82,6 +82,7 @@ class SiteController extends Controller
     {
         $silka1 = Url::find()->orderBy(['id'=>SORT_DESC])->all();
         $silka = Url::find()->orderBy(['id'=>SORT_DESC]);
+        $cost = $silka->sum('click');
         $pagination = new Pagination([
             'defaultPageSize' => 4,
             'totalCount' => $silka->count()
@@ -94,14 +95,6 @@ class SiteController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $model = new Url();
         $count = count($silka1);
-//        $cost = array_sum($costs);
-        foreach ($silka1 as $key => $value){
-        $cost+=$value->click;
-    }
-
-//        $a = array(2, 4, 6, 8);
-//        echo "sum(a) = " . array_sum($a) . "\n";
-
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
